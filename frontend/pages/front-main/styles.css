@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Add these styles for the controls section */
+.controls {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#startMIDI {
+    padding: 8px 16px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#startMIDI:hover {
+    background: #1557b0;
+}
+
+#midiInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+/* Modify container to accommodate controls */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Changed from flex-end to space-between */
+    background: #f5f5f5;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ...rest of your existing styles... */
+#piano {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background: #1a1a1a;
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.white-keys, .black-keys {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    bottom: 20px; /* Adjust to align with bottom */
+}
+
+.white-keys {
+    z-index: 1;
+    display: flex;
+}
+
+.black-keys {
+    z-index: 2;
+}
+
+.key {
+    position: absolute;
+    transition: background-color 0.1s;
+}
+
+.white-key {
+    background: white;
+    border: 1px solid #ccc;
+    height: 160px; /* Reduced height */
+    width: 45px;
+    border-radius: 0 0 4px 4px;
+}
+
+.black-key {
+    background: black;
+    height: 100px; /* Reduced height */
+    width: 30px;
+    border-radius: 0 0 3px 3px;
+}
+
+.key.active {
+    background: #1a73e8;
+}
+
+.white-key:hover {
+    background: #727272;
+}
+
+.black-key:hover {
+    background: #333;
+}
+
+.black-key.active {
+    background: #f05050;
+}
+
+/* ...existing code... */
+
+.key.active {
+    animation: keyPress 0.5s ease;
+}
+
+.white-key.active {
+    background: #1a73e8;
+    animation: whiteKeyPress 0.5s ease;
+}
+
+.black-key.active {
+    background: #f05050;
+    animation: blackKeyPress 0.5s ease;
+}
+
+@keyframes whiteKeyPress {
+    0% {
+        background: #1a73e8;
+        box-shadow: 0 0 90px #1a73e8;
+    }
+    50% {
+        background: #5295ea;
+        box-shadow: 0 0 100px #5295ea;
+    }
+    100% {
+        background: rgb(255, 255, 255);
+        box-shadow: 0 0 100px #5295ea;
+    }
+}
+
+@keyframes blackKeyPress {
+    0% {
+        background: #f05050;
+        box-shadow: 0 0 10px #f05050;
+    }
+    50% {
+        background: #f47373;
+        box-shadow: 0 0 20px #f47373;
+    }
+    100% {
+        background: black;
+        box-shadow: none;
+    }
+}
+
+/* Add transition for smoother effects */
+.key {
+    position: absolute;
+    transition: all 0.1s ease;
+    box-shadow: none;
+}
+
+/* Note trail styling */
+#note-trails {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 21dghhh0px; /* Just above the piano */
+    height: calc(100vh - 220px);
+    pointer-events: none;
+    background: transparent;
+}
+
+.note-trail {
+    position: absolute;
+    bottom: 0;
+    width: 45px;
+    animation: trailUp 5.5s ease-out forwards;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.trail-particle {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, 
+        rgba(26, 115, 232, 0),
+        rgba(26, 115, 232, 0.2) 20%,
+        rgba(26, 115, 232, 0.4) 40%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
+    border-radius: 4px;
+    filter: blur(2px);
+}
+
+.note-trail.black .trail-particle {
+    background: linear-gradient(to top, 
+        rgba(240, 80, 80, 0),
+        rgba(240, 80, 80, 0.2) 20%,
+        rgba(240, 80, 80, 0.4) 40%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
+}
+
+@keyframes trailUp {
+    0% {
+        transform: translateY(0) scaleY(0.3);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) scaleY(1);
+        opacity: 0;
+    }
+}
+
+/* Enhance key press effects */
+.white-key.active {
+    background: linear-gradient(to bottom, #ffffff, #1a73e8);
+    box-shadow: 
+        0 0 10px rgba(26, 115, 232, 0.5),
+        inset 0 -5px 10px rgb(255, 255, 255);
+}
+
+.black-key.active {
+    background: linear-gradient(to bottom, #333333, #f05050);
+    box-shadow: 
+        0 0 10px rgba(240, 80, 80, 0.5),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}

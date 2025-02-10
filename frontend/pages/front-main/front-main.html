@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/midi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/midi.js@0.3.1/build/MIDI.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <button id="startMIDI">Connect MIDI Device</button>
+            <select id="midiInput" disabled>
+                <option>No MIDI devices</option>
+            </select>
+        </div>
+        <div id="piano-container">
+            <div id="piano"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

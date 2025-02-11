@@ -15,6 +15,8 @@ class PianoVisualizer {
         this.activeNotes = new Set();
         this.sustainedNotes = new Set();
         this.getLogout = document.getElementById('Logout');
+        this.network = new brain.NeuralNetwork();
+        this.loadTrainedModel();
         
         this.keyMap = {
             'a': 60, // Middle C
@@ -474,6 +476,29 @@ class PianoVisualizer {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    }
+
+    // Load pre-trained model data
+    async loadTrainedModel() {
+        try {
+            const response = await fetch('http://localhost:5000/api/model');
+            const modelData = await response.json();
+            this.network.fromJSON(modelData);
+            console.log('AI model loaded successfully from server');
+        } catch (error) {
+            console.error('Error loading AI model:', error);
+        }
+    }
+
+    // Example of how to use the trained model
+    suggestJazzChord(note) {
+        // Convert MIDI note to normalized input (between 0 and 1)
+        const input = { note: note / 127 };
+        const output = this.network.run(input);
+        
+        // Example output might be chord extensions
+        console.log('AI Suggestions:', output);
+        return output;
     }
 
 }

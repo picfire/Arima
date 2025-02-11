@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             if (response.ok) {
+                localStorage.setItem('authToken', data.token);
                 alert('Logged in successfully!');
                 window.location.href = '../front-main/main/front-main.html';
 

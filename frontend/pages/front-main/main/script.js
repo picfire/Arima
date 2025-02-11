@@ -1,6 +1,8 @@
 /* filepath: /c:/Users/Matt/Desktop/piano visualizer/frontend/pages/front-main/script.js */
 class PianoVisualizer {
     constructor() {
+        this.checkAuth();
+        this.startAuthCheck();
         this.piano = document.getElementById('piano');
         this.midiInput = document.getElementById('midiInput');
         this.startButton = document.getElementById('startMIDI');
@@ -36,6 +38,16 @@ class PianoVisualizer {
         this.setupInstrumentChange();
     }
 
+    startAuthCheck() {
+        // Initial check
+        this.checkAuth();
+
+        // Check every 5 minutes
+        setInterval(() => {
+            this.checkAuth();
+        }, 5 * 60 * 1000);
+    }
+
     setupEventListeners() {
         this.startButton.addEventListener('click', async () => {
             if (!this.initialized) {
@@ -55,7 +67,43 @@ class PianoVisualizer {
         });
 
         this.getLogout.addEventListener('click', () => {
+            // Clear authentication token
+            localStorage.removeItem('authToken');
+            // Clear any other stored user data if needed
+            sessionStorage.clear();
+            // Redirect to login page
             window.location.href = '../../auth/index.html';
+        });
+    }
+
+    checkAuth() {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            window.location.href = '../../auth/index.html';
+            return;
+        }
+    
+        // Verify token with server
+        fetch('http://localhost:5000/api/auth/verify', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(async response => {
+            // Only redirect on actual auth failures, not server errors
+            if (response.status === 401 || response.status === 403) {
+                localStorage.removeItem('authToken');
+                window.location.href = '../../auth/index.html';
+            }
+        })
+        .catch((error) => {
+            console.error('Auth error:', error);
+            // Don't logout on network errors
+            if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+                localStorage.removeItem('authToken');
+                window.location.href = '../../auth/index.html';
+            }
         });
     }
 

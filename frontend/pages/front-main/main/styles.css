@@ -8,13 +8,37 @@ body {
 
 
 
-/* Add these styles for the controls section */
 .controls {
     margin-bottom: 20px;
     padding: 10px;
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+}
+
+.controls-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+#Logout {
+    padding: 8px 16px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+
+}
+
+#Logout:hover {
+    background: #1557b0;
 }
 
 #startMIDI {
@@ -56,7 +80,7 @@ body {
     position: relative;
     height: 200px;
     width: 100%;
-    background: #1a1a1a;
+    background: #000000;
     border-radius: 8px 8px 0 0;
     padding: 20px;
     box-sizing: border-box;
@@ -80,7 +104,7 @@ body {
 
 .key {
     position: absolute;
-    transition: background-color 0.1s;
+    transition: all 0.1s ease;
 }
 
 .white-key {
@@ -89,6 +113,8 @@ body {
     height: 160px; /* Reduced height */
     width: 45px;
     border-radius: 0 0 4px 4px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
 }
 
 .black-key {
@@ -96,63 +122,65 @@ body {
     height: 100px; /* Reduced height */
     width: 30px;
     border-radius: 0 0 3px 3px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
 }
-
-.key.active {
-    background: #1a73e8;
-}
-
-.white-key:hover {
-    background: #727272;
-}
-
-.black-key:hover {
-    background: #333;
-}
-
-.black-key.active {
-    background: #f05050;
-}
-
-/* ...existing code... */
 
 .key.active {
     animation: keyPress 0.5s ease;
 }
 
-.white-key.active {
-    background: #1a73e8;
-    animation: whiteKeyPress 0.5s ease;
+.white-key:hover {
+    background: #d8d8d8;
+    box-shadow: 0 0 30px rgba(26, 115, 232, 0.5);
+}
+
+.black-key:hover {
+    background: #333;
+    box-shadow: 0 0 30px rgba(51, 51, 51, 0.5);
 }
 
 .black-key.active {
-    background: #f05050;
-    animation: blackKeyPress 0.5s ease;
+    background: #f05050 !important;
+}
+
+/* Combined active states with animations */
+.white-key.active {
+    animation: whiteKeyPress 0.3s ease forwards;
+    background: #1a73e8 !important;
+}
+
+.black-key.active {
+    animation: blackKeyPress 0.3s ease forwards;
 }
 
 @keyframes whiteKeyPress {
     0% {
         background: #1a73e8;
-        box-shadow: 0 0 90px #1a73e8;
+        box-shadow: 0 0 30px rgba(26, 115, 232, 0.5);
     }
     50% {
-        background: #5295ea;
-        box-shadow: 0 0 100px #5295ea;
+        background: linear-gradient(to bottom, #ffffff, #1a73e8);
+        box-shadow: 
+            0 0 50px rgba(26, 115, 232, 0.6),
+            inset 0 -5px 10px rgba(255, 255, 255, 0.8);
     }
     100% {
-        background: rgb(255, 255, 255);
-        box-shadow: 0 0 100px #5295ea;
+        background: white;
+        box-shadow: none;
     }
 }
 
 @keyframes blackKeyPress {
     0% {
         background: #f05050;
-        box-shadow: 0 0 10px #f05050;
+        box-shadow: 0 0 30px rgba(240, 80, 80, 0.5);
     }
     50% {
-        background: #f47373;
-        box-shadow: 0 0 20px #f47373;
+        background: linear-gradient(to bottom, #333333, #f05050);
+        box-shadow: 
+            0 0 50px rgba(240, 80, 80, 0.6),
+            inset 0 -5px 10px rgba(0, 0, 0, 0.2);
     }
     100% {
         background: black;
@@ -235,4 +263,34 @@ body {
     box-shadow: 
         0 0 10px rgba(240, 80, 80, 0.5),
         inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.instrument-controls {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.instrument-controls select,
+.instrument-controls input[type="range"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.instrument-controls button {
+    padding: 8px 16px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.instrument-controls button:hover {
+    background: #1557b0;
 }

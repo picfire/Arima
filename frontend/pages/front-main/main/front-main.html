@@ -11,7 +11,14 @@
 <body>
     <div class="container">
         <div class="controls">
-            <button id="startMIDI">Connect MIDI Device</button>
+            <button id="Logout">Log Out</button>
+            <button id="startMIDI">Initialize Piano</button>
+            <select id="instrument">
+                <option value="acoustic_grand_piano">Grand Piano</option>
+                <option value="bright_acoustic_piano">Bright Piano</option>
+                <option value="electric_piano_1">Electric Piano</option>
+                <option value="harpsichord">Harpsichord</option>
+            </select>
             <select id="midiInput" disabled>
                 <option>No MIDI devices</option>
             </select>

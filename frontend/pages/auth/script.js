@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (response.ok) {
                 alert('Logged in successfully!');
+                window.location.href = '../front-main/main/front-main.html';
+
             } else {
                 alert(data.error || 'Login failed');
             }

@@ -1,14 +1,10 @@
-const brain = require('brain.js');
+const tf = require('@tensorflow/tfjs-node');
 
-// Create a simple network
-const net = new brain.NeuralNetwork();
+// Create a simple tensor
+const tensor = tf.tensor([1, 2, 3, 4]);
 
-// Test with basic data
-net.train([
-    { input: [0], output: [0] },
-    { input: [1], output: [1] }
-]);
+console.log('Tensor created:');
+tensor.print();
 
-// Test prediction
-const output = net.run([0]);
-console.log('Test output:', output);
+// Check TensorFlow version
+console.log('TensorFlow version:', tf.version.tfjs);

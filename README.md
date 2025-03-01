@@ -33,35 +33,3 @@ _Include relevant screenshots or GIFs of your app in action._
 git clone https://github.com/yourusername/NeoSoulPianoVisualizer.git
 cd NeoSoulPianoVisualizer
 
-2️⃣ Install Dependencies
-Backend Setup
-sh
-Copy
-Edit
-cd backend
-npm install
-node server.js
-Frontend Setup
-sh
-Copy
-Edit
-cd frontend
-npm install
-npm start
-3️⃣ Run the Application
-Open http://localhost:3000 in your browser.
-
-🎵 Usage
-Upload a MIDI file or play notes using an on-screen keyboard.
-The AI model will generate a NeoSoul-inspired visualization in real-time.
-Adjust settings like tempo, note intensity, and visualization style.
-Save or share your session.
-🧠 AI Model Training (Optional)
-If you want to retrain the AI model:
-
-sh
-Copy
-Edit
-cd backend
-python train_model.py
-Ensure TensorFlow is installed before running.

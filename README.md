@@ -1,6 +1,6 @@
 ![image](https://github.com/user-attachments/assets/07d6a5ac-5bc8-450a-a86b-df0b237198b5)
 
-# 🎹 NeoSoul Piano Visualizer
+# 🎹 NeoSoul Piano Visualizer (WORK IN-PROGRESS)
 
 An AI-powered **NeoSoul Piano Visualizer** that uses **TensorFlow.js** for training, **MIDI.js** for music processing, and a **Node.js + MongoDB** backend. This web-based application provides real-time piano visualizations, enhancing the experience of NeoSoul compositions.
 

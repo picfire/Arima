@@ -26,6 +26,10 @@ An AI-powered **NeoSoul Piano Visualizer** that uses **TensorFlow.js** for train
 
 ![CXstAPh](https://github.com/user-attachments/assets/62eb98a9-56b7-4838-a997-99bd287ceb7c)
 
+
+![chrome_RAzZMjz1rw](https://github.com/user-attachments/assets/be7f878b-007c-46c3-abcb-cdee6817728c)
+
+
 ## 🚀 Installation & Setup
 
 ### 1️⃣ Clone the Repository

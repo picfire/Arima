@@ -1,0 +1,33 @@
+{
+  "model": {
+    "type": "RNN",
+    "layers": [
+      {
+        "type": "LSTM",
+        "units": 128,
+        "return_sequences": true,
+        "input_shape": [null, 88]
+      },
+      {
+        "type": "LSTM",
+        "units": 128,
+        "return_sequences": true
+      },
+      {
+        "type": "Dense",
+        "units": 88,
+        "activation": "softmax"
+      }
+    ],
+    "dropout": 0.2
+  },
+  "training": {
+    "batch_size": 64,
+    "epochs": 100,
+    "learning_rate": 0.001
+  },
+  "data": {
+    "sequence_length": 100,
+    "num_classes": 88
+  }
+}
